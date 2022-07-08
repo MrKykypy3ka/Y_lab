@@ -7,9 +7,20 @@ from typing import Generator, List, Tuple
 class Movie:
     title: str
     dates: List[Tuple[datetime, datetime]]
+    show_dates: List[datetime]
+
+    def __init__(self, title, dates):
+        self.title = title
+        self.dates = dates
+        self.show_dates = list()
 
     def schedule(self) -> Generator[datetime, None, None]:
-        return []
+        for interval in self.dates:
+            date = interval[0]
+            while date <= interval[1]:
+                self.show_dates.append(date)
+                date += timedelta(days=1)
+        return self.show_dates
 
 
 m = Movie('sw', [
