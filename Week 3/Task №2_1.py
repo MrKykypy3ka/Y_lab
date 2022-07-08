@@ -19,6 +19,11 @@ class CyclicIterator:
             return self.iterable[self.index]
 
 
-cyclic_iterator = CyclicIterator({1: 5, 7: 3, 0: 2})
-for i in cyclic_iterator:
-    print(i)
+def main():
+    cyclic_iterator = CyclicIterator({1: 5, 7: 3, 0: 2})
+    for i in cyclic_iterator:
+        print(i)
+
+
+if __name__ == "__main__":
+    main()
