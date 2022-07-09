@@ -1,20 +1,15 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Generator, List, Tuple
+from typing import Generator, List, Tuple, Any
 
 
 @dataclass
 class Movie:
     title: str
     dates: List[Tuple[datetime, datetime]]
-    show_dates: List[datetime]
+    show_dates = list()
 
-    def __init__(self, title, dates):
-        self.title = title
-        self.dates = dates
-        self.show_dates = list()
-
-    def schedule(self) -> Generator[datetime, None, None]:
+    def schedule(self) -> List[datetime]:
         for interval in self.dates:
             date = interval[0]
             while date <= interval[1]:
