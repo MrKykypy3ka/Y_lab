@@ -9,19 +9,19 @@ def wait_decorator(call_count, start_sleep_time, factor, border_sleep_time):
             print('Начало работы')
             for i in range(call_count):
                 func_result = func(*args, **kwargs)
+                print(f'Запуск номер {i + 1}. Ожидание: {t} секунд. Результат декорируемой функций = {func_result}.')
+                time.sleep(t)
                 if t < border_sleep_time:
-                    t = t * 2 ** factor
+                    t *= 2 ** factor
                 else:
                     t = border_sleep_time
-                print(f'Запуск номер {i+1}. Ожидание: {t} секунд. Результат декорируемой функций = {func_result}.')
-                time.sleep(t)
             print('Конец работы')
             return
         return wrapper
     return decorator
 
 
-@wait_decorator(call_count=2, start_sleep_time=1, factor=2, border_sleep_time=100)
+@wait_decorator(call_count=3, start_sleep_time=1, factor=2, border_sleep_time=100)
 def multiplier(number: int):
     return number * 2
 
